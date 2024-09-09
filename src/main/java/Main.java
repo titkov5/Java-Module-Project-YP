@@ -10,11 +10,22 @@ public class Main {
 
         while (index <= carCount ) {
             System.out.println("— Введите название машины №" + index + ":");
-            String carName = sc.next();
-            int speed = -1;
-            while ( speed <0 || speed > 250) {
+            String carName = sc.nextLine();
+
+            int speed;
+            while (true)
+            {
                 System.out.println("— Введите скорость машины №" + index + ":");
-                speed = sc.nextInt();
+                // вводим строку
+                String line = sc.nextLine();
+                try {
+                    speed = Integer.parseInt(line);
+                    if (speed > 0 && speed <= 250) {
+                        break;
+                    }
+                }
+                catch (NumberFormatException ignored)  {
+                }
             }
 
             Car car = new Car(carName, speed);
